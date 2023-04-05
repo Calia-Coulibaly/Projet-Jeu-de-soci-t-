@@ -1,0 +1,45 @@
+{% extends "page/profilconnexion.html.twig" %}
+{% block profilcreateur %}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a href="?page=accueil" style="width: 10%;"><img src="img/test.png" style="width: 50%;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					{% if session.acces =="oui" %}
+						{# {{dump (session)}} #}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=mesjeux">Mes jeux</a>
+						<a class="nav-link" href="?page=profil">Profil</a>
+						<a class="nav-link" href="?page=deconnect">Deconnexion</a>
+					{% else %}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=connect">Connexion</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</nav>
+</nav>
+    <div>
+    <div>
+      <p>{{jeu.nomJeu}}</p>
+    {# {{dump}} #}
+      <p>Pseudo de l'utilisateur : <strong>{{crea.pseudo}}</strong></p>
+      <p>Membre depuis le : <strong>{{crea.inscription}}</strong></p>
+      <button type="button" class="btn btn-outline-primary disabled position-relative">Contact
+      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">1+
+      <span class="visually-hidden">unread messages</span>
+    </span>
+    </button>
+    </div>
+    <div>
+
+    </div>
+  
+  </div>
+ {% endblock %}

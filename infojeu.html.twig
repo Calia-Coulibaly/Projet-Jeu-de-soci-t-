@@ -1,0 +1,87 @@
+{% extends "page/jeux.html.twig" %}
+
+{% block jeudetail %}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a href="?page=accueil" style="width: 10%;"><img src="img/test.png" style="width: 50%;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					{% if session.acces =="oui" %}
+						{# {{dump (session)}} #}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=mesjeux">Mes jeux</a>
+						<a class="nav-link" href="?page=profil">Profil</a>
+						<a class="nav-link" href="?page=deconnect">Deconnexion</a>
+					{% else %}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=connect">Connexion</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</nav>
+
+
+	<div class="d-flex flex-row">
+		<div class="my-2 mx-2 d-flex flex-row w-20">
+			<div class="w-20 d-flex flex-row border border-dark my-2 mx-2 h-50">
+				<img src={{"./img/"~ jeu.logoJeu}} class="card-img-top" style="width: 60%;" alt="Image du jeu " {{jeu.nomJeu}}>
+				<div class="card-body">
+					<h5 class="card-title">{{jeu.nomJeu}}</h5>
+					<div>
+
+						<a class="btn btn-outline-primary disabled">👤{{jeu.nbr_joueurJeu}}</a>
+						<a class="btn btn-outline-primary disabled">⌚️{{jeu.dureeJeu}}
+							min</a>
+						<a class="btn btn-outline-primary disabled">{{jeu.nomCat}}</a>
+					</div>
+					<br>
+					<p>{{crea.date_ajoutJeu}}</p>
+				</div>
+			</div>
+		</div>
+		<div class="w-50" style="margin-left: 2%">
+			<h3 style="text-align:center">Les règles du jeu</h3>
+			<br>
+			<p>{{jeu.reglesJeu}}</p>
+			<br>
+			<h3 style="text-align:center">Le matériel nécessaire</h3>
+			<p>{{jeu.materielJeu}}</p>
+			<br>
+			<h3 style="text-align:center">Les commentaires</h3>
+			<br>
+			{% for com in coms %}
+				<div class="d-flex flex-column bg-dark border border-dark">
+					<p class="p-bg-dark">De :
+						{{com.pseudoC}}</p>
+					<p class="p-bg-dark">Le :
+						{{com.date_ajoutCommentaire}}</p>
+					<p class="p-bg-dark">{{com.commentaire}}</p>
+				</div>
+				<br>
+			{% endfor %}
+			{% set moyenne = 0 %}
+			{% for note in notes %}
+				{% set moyenne = moyenne + note.note / notes|length %}
+			{% endfor %}
+			{% if notes == null %}
+				<p>
+					Ce jeux n'a pas encore de notes</p>
+			{% else %}
+				<p>Note moyenne :
+					{{moyenne}}
+				{% endif %}
+				<br>
+				<br>
+				{% if session.acces =="oui" %}
+					<a class="btn btn-outline-primary bg-dark" href="?noter={{jeu.nomJeu}}">Évaluation  du jeu</a>
+					<a class="btn btn-outline-primary bg-dark" href="?page=createur&nom={{jeu.pseudo}}">{{jeu.pseudo}}</a>
+				{% endif %}
+
+			</div>
+		{% endblock %}

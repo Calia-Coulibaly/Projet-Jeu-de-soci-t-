@@ -1,0 +1,84 @@
+{% extends "page/ajoutjeu.html.twig" %}
+{% block ajoutjeu %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="?page=accueil">A quoi on Joue ?</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+      {% if session.acces =="oui" %}
+      {# {{dump (session)}} #}
+      <a class="nav-link" href="?page=accueil">Accueil</a>
+        <a class="nav-link" href="?page=jeux">Jeux</a>
+        <a class="nav-link" href="?page=mesjeux">Mes jeux</a>
+        <a class="nav-link" href="?page=profil">Profil</a>
+        <a class="nav-link" href="?page=deconnect">Deconnexion</a>
+        {% else %}
+        <a class="nav-link" href="?page=accueil">Accueil</a>
+        <a class="nav-link" href="?page=jeux">Jeux</a>
+        <a class="nav-link" href="?page=connect">Connexion</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</nav>
+   <form method="post" enctype="multipart/form-data" action="index.php?action=valider_ajout" class="well">
+	<fieldsetclass="form-group">
+	 <legend>Nouveau jeu</legend>
+	 <div class="form-group row">
+	   <label for="nom" class="col-sm-2 col-form-label col-form-label-sm">Nom du jeu</label>
+	   <div class="col-sm-10">
+		 <input  type="text" id="nom" class="form-control form-control-sm" name="nom" required placeholder="Nom du jeu (Non Modifiable)" />
+	   </div>
+	 </div>
+	 <div class="form-group row">
+	   <label for="nbr_joueur" class="col-sm-2 col-form-label col-form-label-sm">Nombre de joueurs minimums</label>
+	   <div class="col-sm-10">
+		 <input type="number" id="nbr_joueur" class="form-control form-control-sm" name="nbr_joueur" required placeholder="Nombre de joueurs minimum"/>
+	   </div>
+	 </div>
+	 <div class="form-group row">
+	   <label for="duree" class="col-sm-2 col-form-label col-form-label-sm">Temps de jeu</label>
+	   <div class="col-sm-10">
+		 <input type="time" id="duree" class="form-control form-control-sm" name="duree" required placeholder="Temps de jeu hh:mm"/>
+	   </div>
+	 </div>
+	 <div class="form-group row">
+	   <label for="regles" class="col-sm-2 col-form-label col-form-label-sm">Règles</label>
+	   <div class="col-sm-10">
+		 <input type="text" id="regles" class="form-control form-control-sm" name="regles" required placeholder="Règles du jeu"/>
+	   </div>
+	 </div>
+	 <class="form-group row">
+	   <label for="materiel" class="col-sm-2 col-form-label col-form-label-sm">Matériel nécessaire</label>
+	   <div class="col-sm-10">
+		 <input type="text" id="materiel" class="form-control form-control-sm" name="materiel" required placeholder="Materiaux nécessaires"/>
+	   </div>
+	 </div>
+	 </div>
+	<div class="form-group row">
+	   <label for="logo" class="col-sm-2 col-form-label col-form-label-sm">Image du jeu</label>
+	   <div class="col-sm-10">
+		 <input type="file" id="logo" name="logo" accept="image/png, image/jpeg" required>
+	   </div>
+	 </div>
+	 <div class="form-group row">
+	   <label for="nom_cat" class="col-sm-2 col-form-label col-form-label-sm">Categorie</label>
+	   <div class="col-sm-10">
+		 {# <input type="select" id="nom_cat" class="form-control form-control-sm" name="nom_cat" required placeholder="Sélectionnez une catégorie"/> #}
+	   	<select name="nom_cat" id="nom_cat">
+		   	{% for cat in cat %}
+		   		<option value="{{cat.nom_cat}}">{{cat.nom_cat}}</option>
+			{% endfor %}
+		</select>
+	   </div>
+	 </div>
+	 </div>
+	 <input  type="hidden" id="pseudo" name="pseudo" value="{{session.pseudo}}"/>
+	 <input type="submit" class="btn btn-primary" name="valider_ajout" value="Valider"/>
+	</fieldset>
+	</form>
+</div>
+ {% endblock %}

@@ -1,0 +1,53 @@
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+}
+
+.btn-primary {
+    color: #fff;
+    border-color: #000000;
+}
+
+
+.card-body {
+    background-color: #e4e4e4ad;
+}
+
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    border-color: #000000;
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+
+}
+
+#search{
+    padding: 0;
+    margin-left:15%;
+    margin-right: 15%;
+}
+
+.bg-dark {
+    color:  #fff;
+}  
+
+.p-bg-dark{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#con{
+    padding: 0;
+    margin-left:20%;
+    margin-right: 20%;
+}
+
+#ins{
+    padding: 0;
+    margin-left:20%;
+    margin-right: 20%;
+}
+
+#notcom{
+    padding: 0;
+    margin-left:20%;
+    margin-right: 20%;
+}

@@ -1,0 +1,54 @@
+{% extends "page/mesjeux.html.twig" %}
+{% block mesjeux %}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a href="?page=accueil" style="width: 10%;"><img src="img/test.png" style="width: 50%;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					{% if session.acces =="oui" %}
+						{# {{dump (session)}} #}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=mesjeux">Mes jeux</a>
+						<a class="nav-link" href="?page=profil">Profil</a>
+						<a class="nav-link" href="?page=deconnect">Deconnexion</a>
+					{% else %}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=connect">Connexion</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div>
+		<div>
+	<div class="contenair-fluid text-center">
+			<a href="?action=ajouter" class="btn btn-primary bg-dark" style="margin-top:2%;">Ajouter</a>
+			{# <a href="?action=modifier" class="btn btn-primary disabled ">Modifier</a>
+			<a href="?action=supprimer" class="btn btn-primary disabled">Supprimer</a> #}
+    </div>
+
+			<div class="my-2 mx-2 d-flex flex-row ">
+				{% for ajtjeu in mesjeuxliste %}
+					<div class="w-50 d-flex flex-row border border-dark my-2 mx-2">
+						<img src={{"./img/"~ ajtjeu.logoJeu}} class="card-img-top" style="width: 60%;" alt="Image du jeu " {{ajtjeu.nomJeu}}>
+						<div class="card-body">
+							<h5 class="card-title">{{ajtjeu.nomJeu}}</h5>
+							<div>
+								<a class="btn btn-outline-primary disabled">👤{{ajtjeu.nbr_joueurJeu}}</a>
+								<a class="btn btn-outline-primary disabled">⌚️{{ajtjeu.dureeJeu}}
+									HR</a>
+								<a class="btn btn-outline-primary disabled">{{ajtjeu.nomCat}}</a>
+							</div>
+							<br>
+							<p>{{ajtjeu.date_ajoutJeu}}</p>
+							<a href="?page=jeux&nom={{ajtjeu.nomJeu}}" class="btn btn-primary bg-dark ">Afficher plus</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% endblock %}

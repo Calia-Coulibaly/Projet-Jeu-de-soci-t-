@@ -1,0 +1,50 @@
+{% extends "page/profil.html.twig" %}
+{% block profilcreateur %}
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+		<div class="container-fluid">
+			<a href="?page=accueil" style="width: 10%;"><img src="img/test.png" style="width: 50%;"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					{% if session.acces =="oui" %}
+						{# {{dump (session)}} #}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=mesjeux">Mes jeux</a>
+						<a class="nav-link" href="?page=profil">Profil</a>
+						<a class="nav-link" href="?page=deconnect">Deconnexion</a>
+					{% else %}
+						<a class="nav-link" href="?page=accueil">Accueil</a>
+						<a class="nav-link" href="?page=jeux">Jeux</a>
+						<a class="nav-link" href="?page=connect">Connexion</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<div>
+		<div style="margin-left:10%; ">
+			<p>Pseudo :
+				<strong>{{profil.pseudo}}</strong>
+			</p>
+			<p>Nom :
+				<strong>{{profil.nom}}</strong>
+			</p>
+			<p>Prénom :
+				<strong>{{profil.prenom}}</strong>
+			</p>
+			<p>Adresse mail :
+				<strong>{{profil.mail}}</strong>
+			</p>
+			<p>Membre depuis le :
+				<strong>{{profil.inscription}}</strong>
+			</p>
+			{# <button type="button" class="btn btn-outline-primary disabled position-relative">Modifier
+			</span>
+		</button> #}
+	</div>
+	<div></div>
+</div></div>{% endblock %}
